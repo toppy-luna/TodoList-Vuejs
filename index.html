@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.jsハンズオン</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!--
+        <div>Debug Lists({{isDoneOnly}})={{getLists}}</div>
+        <div>-----------</div>
+        -->
+        <div class="form">
+            <div>リスト数は{{lists.length}}個です。完了済みは{{getDoneNum}}個です。</div>
+            <input v-model="inputText" type="text">
+            <button @click="onAdd">追加</button>
+            <button @click="onToggleDone">{{getToggleButtonName}}</button>
+            <br>
+            <div>検索</div>
+            <input v-model="searchText" type="text">
+        </div>
+        <ul class="lists" v-if="getLists.length">
+            <li v-for="(list, index) in getLists">
+                <input type="checkbox" v-model="list.isDone">
+                <span>{{index}} - {{list.name}}</span>
+                <span v-if="list.isDone">（済）</span>
+                <button @click="onDelete(index)">削除</button>
+            </li>
+        </ul>
+        <div v-else>
+            何もありません
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
