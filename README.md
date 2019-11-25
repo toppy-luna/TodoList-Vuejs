@@ -2,9 +2,30 @@
 作成したコードを外部アクセス可能にするため、Amazon S3にアップしてあります。表示デザインは気にしない。
 https://todolistvue.s3-ap-northeast-1.amazonaws.com/index.html
 
+## Index
+### ToDoリストを作ってみよう
+1. 入力したらリアルタイムで表示される
+    * v-model
+2. ToDoが表示される
+    * v-for
+3. ToDoの追加ができる
+    * button, v-on(@click)
+4. ToDoがないときは「なにもありません。」と表示される
+    * v-if, v-else
+5. ToDoを完了できる
+    * checkbox, v-on(@click)
+6. 削除ができる
+    * button, v-on(@click)
+
+### おまけ
+1. ToDoの数を表示する
+2. 完了したToDoの数を表示する(computedを使う)
+3. 完了したToDoだけを表示する機能を追加する
+4. ToDoの検索（inputを用意してfilterをかけて表示）
+
 ## ToDoリストを作ってみよう
 1. 入力したらリアルタイムで表示される
-データバインディングとv-modelという機能を使用する。v-xxxはディレクティブと呼ぶVueの機能。最終的にTodoリストには使用していない。
+データバインディングとv-modelという機能を使用する。v-xxxはディレクティブと呼ぶVueの機能。
 
 ./js/main.js
 ```js
@@ -24,7 +45,7 @@ https://todolistvue.s3-ap-northeast-1.amazonaws.com/index.html
 ```
 
 2. ToDoが表示される
-リスト用データ配列を用意し、データ配列内のデータを表示するようにする
+リスト用データ配列を用意し、v-forディレクティブを使いデータ配列内のデータを表示するようにする
 
 ./js/main.js
 ```js
@@ -55,7 +76,7 @@ https://todolistvue.s3-ap-northeast-1.amazonaws.com/index.html
 ```
 
 3. ToDoの追加ができる
-@clickでmethodのonAdd()をコールする。onAddには入力フォームのデータをリストデータに追加する処理を記載する。
+v-modelで入力フォームのデータをバインディングし、@clickでmethodのonAdd()をコールする。onAddには入力フォームのデータをリストデータに追加する処理を記載する。
 
 ./js/main.js
 ```js
@@ -80,7 +101,7 @@ https://todolistvue.s3-ap-northeast-1.amazonaws.com/index.html
 ```
 
 4. ToDoがないときは「なにもありません。」と表示される
-v-if v-elseを使用する。Todoがないときはリストデータが空のとき。
+v-if v-elseディレクティブを使用する。Todoがないときはリストデータが空のときで判断する。
 
 ./index.html
 ```html
@@ -91,7 +112,7 @@ v-if v-elseを使用する。Todoがないときはリストデータが空の�
 ```
 
 5. ToDoを完了できる
-checkboxをhtmlに追加し、v-modelでisDoneとデータバインディングする。
+checkboxをhtmlに追加し、v-modelディレクティブでisDoneとデータバインディングする。
 
 ./index.html
 ```html
@@ -103,7 +124,7 @@ checkboxをhtmlに追加し、v-modelでisDoneとデータバインディング�
 ```
 
 6. 削除ができる
-削除ボタンを追加し、methodのonDeleteをコールする。そのとき削除行indexを渡す。
+削除ボタンを追加し、v-onディレクティブ(@click)でmethodのonDeleteをコールする。そのとき削除行indexを引数で渡す。
 
 ./js/main.js
 ```js
